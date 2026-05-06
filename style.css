@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding: 60px 16px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+/* 완료 예정 시간 입력 행 */
+#dueDateRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+#dueDateRow label {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+#dueDateRow input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#dueDateRow input:focus {
+  border-color: #4a90e2;
+}
+
+/* 할일 항목 내 텍스트+시간 묶음 */
+.text-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 완료 예정 시간 표시 */
+.due-date {
+  font-size: 0.78rem;
+  color: #4a90e2;
+}
+
+li.done .due-date {
+  color: #bbb;
+}
+
+/* 탭 바 */
+#tabBar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+#tabBar button {
+  flex: 1;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f8f8f8;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+#tabBar button:hover {
+  background: #eef4fc;
+  border-color: #4a90e2;
+  color: #4a90e2;
+}
+
+#tabBar button.active {
+  background: #4a90e2;
+  border-color: #4a90e2;
+  color: #fff;
+  font-weight: 600;
+}
+
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-area input:focus {
+  border-color: #4a90e2;
+}
+
+.input-area button {
+  padding: 10px 18px;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.input-area button:hover {
+  background: #357abd;
+}
+
+#todoList {
+  list-style: none;
+}
+
+#todoList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#todoList li:last-child {
+  border-bottom: none;
+}
+
+#todoList li.done span {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+#todoList li span {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+}
+
+#todoList li button {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#todoList li button:hover {
+  color: #e74c3c;
+}
