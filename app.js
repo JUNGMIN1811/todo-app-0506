@@ -1,31 +1,11 @@
 const input = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
-const container = document.querySelector('.container');
 
 let todos = JSON.parse(localStorage.getItem('todos') || '[]');
 let currentTab = 'all'; // 현재 선택된 탭: 'all' | 'active' | 'done'
 
-// 할일 입력 아래에 완료 예정 시간 입력 필드를 동적으로 생성
-const dueDateRow = document.createElement('div');
-dueDateRow.id = 'dueDateRow';
-
-const dueDateLabel = document.createElement('label');
-dueDateLabel.htmlFor = 'dueDateInput';
-dueDateLabel.textContent = '완료 예정 시간';
-
-const dueDateInput = document.createElement('input');
-dueDateInput.type = 'datetime-local';
-dueDateInput.id = 'dueDateInput';
-
-dueDateRow.appendChild(dueDateLabel);
-dueDateRow.appendChild(dueDateInput);
-
-// input-area 바로 뒤에 삽입
-const inputArea = document.querySelector('.input-area');
-inputArea.insertAdjacentElement('afterend', dueDateRow);
-
-// 탭 영역을 동적으로 생성하여 dueDateRow 아래에 삽입
+// 탭 영역을 동적으로 생성
 const tabBar = document.createElement('div');
 tabBar.id = 'tabBar';
 
@@ -47,8 +27,9 @@ tabConfig.forEach(({ id, label }) => {
   tabBar.appendChild(btn);
 });
 
-// dueDateRow 바로 뒤에 탭 삽입
-dueDateRow.insertAdjacentElement('afterend', tabBar);
+// input-area 바로 뒤에 탭 삽입
+const inputArea = document.querySelector('.input-area');
+inputArea.insertAdjacentElement('afterend', tabBar);
 
 // 탭 활성 상태 업데이트
 function renderTabs() {
@@ -64,10 +45,15 @@ function getFiltered() {
   return todos;
 }
 
-// datetime-local 값을 읽기 좋은 형태로 변환 (예: 2026-05-06T14:30 → 2026-05-06 14:30)
-function formatDueDate(value) {
-  if (!value) return null;
-  return value.replace('T', ' ');
+// Date 객체를 읽기 좋은 형태로 변환 (예: 2026-05-06 14:30)
+function formatNow() {
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm   = String(now.getMonth() + 1).padStart(2, '0');
+  const dd   = String(now.getDate()).padStart(2, '0');
+  const hh   = String(now.getHours()).padStart(2, '0');
+  const min  = String(now.getMinutes()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
 }
 
 function render() {
@@ -82,7 +68,7 @@ function render() {
     const li = document.createElement('li');
     if (todo.done) li.classList.add('done');
 
-    // 텍스트 + 완료 예정 시간을 묶는 wrapper
+    // 텍스트 + 완료 시간을 묶는 wrapper
     const textWrap = document.createElement('div');
     textWrap.className = 'text-wrap';
 
@@ -91,12 +77,12 @@ function render() {
     span.addEventListener('click', () => toggleDone(index));
     textWrap.appendChild(span);
 
-    // 완료 예정 시간이 있으면 표시
-    if (todo.dueDate) {
-      const due = document.createElement('span');
-      due.className = 'due-date';
-      due.textContent = `⏰ ${todo.dueDate}`;
-      textWrap.appendChild(due);
+    // 완료 처리된 경우 완료 시간 표시
+    if (todo.done && todo.doneAt) {
+      const doneTime = document.createElement('span');
+      doneTime.className = 'due-date';
+      doneTime.textContent = `✓ ${todo.doneAt}`;
+      textWrap.appendChild(doneTime);
     }
 
     const deleteBtn = document.createElement('button');
@@ -115,19 +101,17 @@ function addTodo() {
   const text = input.value.trim();
   if (!text) return;
 
-  todos.push({
-    text,
-    done: false,
-    dueDate: formatDueDate(dueDateInput.value), // 완료 예정 시간 저장
-  });
+  todos.push({ text, done: false, doneAt: null });
 
   input.value = '';
-  dueDateInput.value = ''; // 입력 초기화
   render();
 }
 
 function toggleDone(index) {
-  todos[index].done = !todos[index].done;
+  const todo = todos[index];
+  todo.done = !todo.done;
+  // 완료 처리 시 현재 시각 기록, 완료 취소 시 초기화
+  todo.doneAt = todo.done ? formatNow() : null;
   render();
 }
 

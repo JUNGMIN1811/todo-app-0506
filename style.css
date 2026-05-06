@@ -32,35 +32,6 @@ h1 {
   letter-spacing: -0.3px;
 }
 
-/* 완료 예정 시간 입력 행 */
-#dueDateRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px 0;
-}
-
-#dueDateRow label {
-  font-size: 0.82rem;
-  color: #555;
-  white-space: nowrap;
-}
-
-#dueDateRow input {
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px solid #c8c8c8;
-  border-radius: 0;
-  font-size: 0.85rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.15s;
-}
-
-#dueDateRow input:focus {
-  border-color: #03c75a;
-}
-
 /* 할일 항목 내 텍스트+시간 묶음 */
 .text-wrap {
   flex: 1;
