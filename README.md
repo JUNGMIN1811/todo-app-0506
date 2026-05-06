@@ -23,10 +23,3 @@ todo-app/
 ├── style.css    # 스타일
 └── app.js       # 전체 로직 및 상태 관리
 ```
-
-## 기술 스택
-
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES6+)
-- localStorage
