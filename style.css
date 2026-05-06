@@ -5,54 +5,60 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
+  font-family: 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+  background: #f4f4f4;
   display: flex;
   justify-content: center;
-  padding: 60px 16px;
+  padding: 40px 16px;
 }
 
 .container {
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 32px;
+  border: 1px solid #dcdcdc;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
   width: 100%;
-  max-width: 480px;
+  max-width: 500px;
 }
 
+/* 네이버 스타일 헤더 */
 h1 {
-  font-size: 1.6rem;
-  margin-bottom: 24px;
-  color: #222;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background: #03c75a;
+  padding: 14px 20px;
+  letter-spacing: -0.3px;
 }
 
 /* 완료 예정 시간 입력 행 */
 #dueDateRow {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 8px;
+  padding: 10px 20px 0;
 }
 
 #dueDateRow label {
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.82rem;
+  color: #555;
   white-space: nowrap;
 }
 
 #dueDateRow input {
   flex: 1;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  padding: 6px 10px;
+  border: 1px solid #c8c8c8;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-family: inherit;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s;
 }
 
 #dueDateRow input:focus {
-  border-color: #4a90e2;
+  border-color: #03c75a;
 }
 
 /* 할일 항목 내 텍스트+시간 묶음 */
@@ -65,8 +71,8 @@ h1 {
 
 /* 완료 예정 시간 표시 */
 .due-date {
-  font-size: 0.78rem;
-  color: #4a90e2;
+  font-size: 0.75rem;
+  color: #03c75a;
 }
 
 li.done .due-date {
@@ -76,80 +82,104 @@ li.done .due-date {
 /* 탭 바 */
 #tabBar {
   display: flex;
-  gap: 6px;
-  margin-bottom: 20px;
+  gap: 0;
+  border-bottom: 2px solid #03c75a;
+  margin: 16px 20px 0;
 }
 
 #tabBar button {
   flex: 1;
-  padding: 8px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #f8f8f8;
-  color: #666;
-  font-size: 0.9rem;
+  padding: 9px 0;
+  border: 1px solid #dcdcdc;
+  border-bottom: none;
+  border-radius: 0;
+  background: #f9f9f9;
+  color: #888;
+  font-size: 0.88rem;
+  font-family: inherit;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background 0.15s, color 0.15s;
+  margin-right: -1px;
 }
 
 #tabBar button:hover {
-  background: #eef4fc;
-  border-color: #4a90e2;
-  color: #4a90e2;
+  background: #eafff3;
+  color: #03c75a;
 }
 
 #tabBar button.active {
-  background: #4a90e2;
-  border-color: #4a90e2;
-  color: #fff;
-  font-weight: 600;
+  background: #fff;
+  border-color: #dcdcdc;
+  border-bottom: 2px solid #fff;
+  color: #03c75a;
+  font-weight: bold;
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 1;
 }
 
+/* 입력 영역 */
 .input-area {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 0;
+  margin: 16px 20px 16px;
 }
 
 .input-area input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  padding: 9px 12px;
+  border: 1px solid #c8c8c8;
+  border-right: none;
+  border-radius: 0;
+  font-size: 0.92rem;
+  font-family: inherit;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s;
 }
 
 .input-area input:focus {
-  border-color: #4a90e2;
+  border-color: #03c75a;
+  z-index: 1;
+  position: relative;
 }
 
 .input-area button {
-  padding: 10px 18px;
-  background: #4a90e2;
+  padding: 9px 16px;
+  background: #03c75a;
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  border: 1px solid #02b351;
+  border-radius: 0;
+  font-size: 0.92rem;
+  font-family: inherit;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s;
+  white-space: nowrap;
 }
 
 .input-area button:hover {
-  background: #357abd;
+  background: #02b351;
 }
 
+/* 할일 목록 */
 #todoList {
   list-style: none;
+  border-top: 1px solid #ebebeb;
+  margin: 0 0 8px;
 }
 
 #todoList li {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 8px;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 11px 20px;
+  border-bottom: 1px solid #ebebeb;
+  background: #fff;
+  transition: background 0.1s;
+}
+
+#todoList li:hover {
+  background: #f9fff9;
 }
 
 #todoList li:last-child {
@@ -163,18 +193,28 @@ li.done .due-date {
 
 #todoList li span {
   flex: 1;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: #333;
+  cursor: pointer;
+  letter-spacing: -0.2px;
+}
+
+/* 체크박스 네이버 스타일 */
+#todoList li input[type="checkbox"] {
+  accent-color: #03c75a;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
 #todoList li button {
   background: none;
   border: none;
-  color: #ccc;
-  font-size: 1.1rem;
+  color: #c8c8c8;
+  font-size: 1rem;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.15s;
+  padding: 2px 4px;
 }
 
 #todoList li button:hover {
